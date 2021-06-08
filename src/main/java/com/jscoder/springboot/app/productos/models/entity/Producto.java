@@ -1,21 +1,21 @@
 package com.jscoder.springboot.app.productos.models.entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name="productos")
-public class Producto {
+public class Producto  implements Serializable {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
     private  Double precio;
-    private Date  fecha;
+    @Column(name = "create_at")
+    @Temporal(TemporalType.DATE)
+    private Date  createAt;
 
     public Long getId() {
         return id;
@@ -40,4 +40,6 @@ public class Producto {
     public void setPrecio(Double precio) {
         this.precio = precio;
     }
+
+
 }
